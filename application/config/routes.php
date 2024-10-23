@@ -50,5 +50,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+
+$route['barang'] = 'barang/index'; // Menampilkan daftar barang
+$route['barang/add'] = 'barang/create'; // Menampilkan form tambah barang
+$route['barang/edit/(:num)'] = 'barang/update/$1'; // Menampilkan form edit barang berdasarkan ID
+$route['barang/delete/(:num)'] = 'barang/delete/$1'; // Menghapus barang berdasarkan ID
+$route['barang/search'] = 'barang/search'; // Fitur pencarian barang berdasarkan SKU/nama/kategori
+$route['barang/filter'] = 'barang/filter_by_price'; // Filter barang berdasarkan range harga
+
+$route['kategori'] = 'kategori/index'; // Menampilkan daftar kategori barang
+$route['kategori/add'] = 'kategori/create'; // Menampilkan form tambah kategori
+$route['kategori/edit/(:num)'] = 'kategori/update/$1'; // Menampilkan form edit kategori berdasarkan ID
+$route['kategori/delete/(:num)'] = 'kategori/delete/$1'; // Menghapus kategori berdasarkan ID
+
+$route['penjualan'] = 'penjualan/index'; // Menampilkan daftar penjualan
+$route['penjualan/add'] = 'penjualan/create'; // Menampilkan form tambah penjualan
+$route['penjualan/edit/(:num)'] = 'penjualan/update/$1'; // Menampilkan form edit penjualan berdasarkan ID
+$route['penjualan/delete/(:num)'] = 'penjualan/delete/$1'; // Menghapus penjualan berdasarkan ID
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
