@@ -5,8 +5,11 @@ class Kategori_model extends CI_Model {
     }
 
     // Mendapatkan seluruh data kategori dari dalam database
-    public function get_all_kategori() {
-        return $this->db->get('kategori_barang')->result();
+    public function get_all_penjualan() {
+        $this->db->select('penjualan.*, barang.nama_barang');
+        $this->db->from('penjualan');
+        $this->db->join('barang', 'penjualan.id_barang = barang.id_barang');
+        return $this->db->get()->result();
     }
 
     // Menginputkan data kategori baru ke dalam database

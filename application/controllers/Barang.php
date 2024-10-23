@@ -8,13 +8,6 @@ class Barang extends CI_Controller {
 
     public function index() {
         $data['barang'] = $this->Barang_model->get_all_barang();
-        $data['kategori'] = $this->Kategori_model->get_all_kategori();
-
-        // Tambahkan nama kategori ke setiap barang
-        foreach ($data['barang'] as $barang) {
-            $barang->nama_kategori = $this->Barang_model->get_kategori_by_id($barang->id_kategori);
-        }
-
         $this->load->view('barang_view', $data);
     }
 
@@ -45,7 +38,7 @@ class Barang extends CI_Controller {
         $data = [
             'sku' => $this->input->post('sku'),
             'nama_barang' => $this->input->post('nama_barang'),
-            'nama_kategori' => $this->input->post('nama_kategori'),
+            'id_kategori' => $this->input->post('id_kategori'),
             'harga' => $this->input->post('harga'),
             'jumlah_stok' => $this->input->post('jumlah_stok')
         ];
@@ -58,14 +51,12 @@ class Barang extends CI_Controller {
         redirect('barang');
     }
 
-    // Pencarian barang
     public function search() {
         $keyword = $this->input->post('keyword');
         $data['barang'] = $this->Barang_model->search_barang($keyword);
         $this->load->view('barang_view', $data);
     }
 
-    // Filter berdasarkan range harga
     public function filter() {
         $min_price = $this->input->post('min_price');
         $max_price = $this->input->post('max_price');

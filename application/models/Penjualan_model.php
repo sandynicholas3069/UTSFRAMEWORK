@@ -4,9 +4,12 @@ class Penjualan_model extends CI_Model {
         parent::__construct();
     }
 
-    // // Mendapatkan seluruh data penjualan dari dalam database
+    // Mendapatkan seluruh data penjualan dengan join ke tabel barang untuk informasi barang
     public function get_all_penjualan() {
-        return $this->db->get('penjualan')->result();
+        $this->db->select('penjualan.*, barang.nama_barang');
+        $this->db->from('penjualan');
+        $this->db->join('barang', 'penjualan.id_barang = barang.id_barang');
+        return $this->db->get()->result();
     }
 
     // Menginputkan data penjualan baru ke dalam database
@@ -14,30 +17,24 @@ class Penjualan_model extends CI_Model {
         return $this->db->insert('penjualan', $data);
     }
 
-    // // Mendapatkan data penjualan secara spesifik berdasarkan ID penjualan
+    // Mendapatkan data penjualan secara spesifik berdasarkan ID
     public function get_penjualan($id) {
-        return $this->db->get_where('penjualan', array('id_penjualan' => $id))->row();
+        $this->db->select('penjualan.*, barang.nama_barang');
+        $this->db->from('penjualan');
+        $this->db->join('barang', 'penjualan.id_barang = barang.id_barang');
+        $this->db->where('penjualan.id_penjualan', $id);
+        return $this->db->get()->row();
     }
 
-    // Memperbarui data penjualan berdasarkan ID penjualan
+    // Memperbarui data penjualan berdasarkan ID
     public function update_penjualan($id, $data) {
         $this->db->where('id_penjualan', $id);
         return $this->db->update('penjualan', $data);
     }
 
-    // Menghapus data penjualan berdasarkan ID penjualan
+    // Menghapus data penjualan berdasarkan ID
     public function delete_penjualan($id) {
         $this->db->where('id_penjualan', $id);
         return $this->db->delete('penjualan');
-    }
-
-    // Melakukan pembaruan data stock setelah melakukan transaksi penjualan
-    public function update_stock($id_barang, $quantity) {
-        $this->Barang_model->update_stock($id_barang, $quantity);
-    }
-
-    // Mengembalikan jumlah data stock setelah pembatalan atau pembaruan data transaksi penjualan
-    public function restore_stock($id_barang, $quantity) {
-        $this->Barang_model->restore_stock($id_barang, $quantity);
     }
 }
