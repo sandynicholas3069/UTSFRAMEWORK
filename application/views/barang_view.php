@@ -57,10 +57,10 @@
                         <td class="px-4 py-2 border-b text-center"><?= $b->harga ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->jumlah_stok ?></td>
                         <td class="px-4 py-2 border-b text-center">
-                            <a href="<?= base_url('barang/edit/' . $b->sku) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
+                            <a href="<?= base_url('barang/edit/' . $b->id_barang) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
                         </td>
                         <td class="px-4 py-2 border-b text-center">
-                            <a href="<?= base_url('barang/delete/' . $b->sku) ?>" onclick="return confirm('Apa anda yakin ingin menghapus Barang ini?');" class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Hapus</a>
+                            <a href="<?= base_url('barang/delete/' . $b->id_barang) ?>" onclick="return confirm('Apa anda yakin ingin menghapus Barang ini?');" class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

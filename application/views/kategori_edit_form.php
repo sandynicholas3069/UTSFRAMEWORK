@@ -15,7 +15,7 @@
         <form action="<?= base_url('kategori/update/' . $kategori->id_kategori) ?>" method="post">
             <div class="mb-4">
                 <label for="nama_kategori" class="block text-sm font-medium text-orange-300">Nama Kategori</label>
-                <input type="text" id="nama_kategori" name="nama_kategori" value="<?= $kategori->nama_kategori ?>" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
+                <input type="text" id="nama_kategori" name="nama_kategori" value="<?= isset($kategori->nama_kategori) ?>" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
             </div>
             <div class="mt-6">
                 <button type="submit" class="w-full px-4 py-2 bg-orange-600 text-white font-semibold rounded-md shadow-lg hover:bg-orange-700 focus:ring focus:ring-orange-500">Perbarui Data Kategori</button>

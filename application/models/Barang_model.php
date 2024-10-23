@@ -19,9 +19,25 @@ class Barang_model extends CI_Model {
         return $this->db->get_where('barang', ['id_barang' => $id])->row();
     }
 
-    public function update_barang($id, $data) {
-        $this->db->where('id_barang', $id);
-        return $this->db->update('barang', $data);
+    public function update_barang($id) {
+        $data = [
+            'sku' => $this->input->post('sku'),
+            'nama_barang' => $this->input->post('nama_barang'),
+            'id_kategori' => $this->input->post('id_kategori'), // Pastikan ini valid
+            'harga' => $this->input->post('harga'),
+            'jumlah_stok' => $this->input->post('jumlah_stok')
+        ];
+
+        // Pastikan id_kategori valid sebelum update
+        if ($this->Kategori_model->get_kategori($data['id_kategori'])) {
+            $this->Barang_model->update_barang($id, $data);
+            redirect('barang');
+        } else {
+            // Tangani error: id_kategori tidak valid
+            // Misalnya: set flashdata dan redirect
+            $this->session->set_flashdata('error', 'ID Kategori tidak valid.');
+            redirect('barang/edit/' . $id);
+        }
     }
 
     public function delete_barang($id) {
@@ -42,8 +58,15 @@ class Barang_model extends CI_Model {
         return $this->db->get('barang')->result();
     }
 
+    public function is_stock_available($sku) {
+        $this->db->where('sku', $sku);
+        $this->db->where('jumlah_stok >', 0);
+        $query = $this->db->get('barang');
+        return $query->num_rows() > 0;
+    }
+
     public function update_stock($id_barang, $quantity) {
-        $this->db->set('jumlah_stok', 'jumlah_stok - ' . $quantity, FALSE);
+        $this->db->set('jumlah_stok', 'jumlah_stok + ' . (int)$quantity, FALSE); // Update jumlah_stok
         $this->db->where('id_barang', $id_barang);
         return $this->db->update('barang');
     }
