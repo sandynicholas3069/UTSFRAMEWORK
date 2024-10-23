@@ -22,8 +22,8 @@
                 <input type="text" id="nama_barang" name="nama_barang" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
             </div>
             <div class="mb-4">
-                <label for="id_kategori" class="block text-sm font-medium text-orange-300">Kategori</label>
-                <select id="id_kategori" name="id_kategori" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
+                <label for="nama_kategori" class="block text-sm font-medium text-orange-300">Kategori</label>
+                <select id="nama_kategori" name="nama_kategori" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
                     <?php foreach ($kategori as $k) : ?>
                         <option value="<?= $k->id_kategori; ?>"><?= $k->nama_kategori; ?></option>
                     <?php endforeach; ?>

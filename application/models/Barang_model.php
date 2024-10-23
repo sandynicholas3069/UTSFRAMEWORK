@@ -9,6 +9,12 @@ class Barang_model extends CI_Model {
         return $this->db->get('barang')->result();
     }
 
+    public function get_kategori_by_id($id_kategori) {
+        $this->load->model('Kategori_model'); // Pastikan model Kategori_model diload
+        $kategori = $this->Kategori_model->get_kategori($id_kategori);
+        return $kategori ? $kategori->nama_kategori : null; // Kembalikan nama kategori atau null jika tidak ada
+    }
+
     // Menginputkan data barang baru ke dalam database
     public function insert_barang($data) {
         return $this->db->insert('barang', $data);

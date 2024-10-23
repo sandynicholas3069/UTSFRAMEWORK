@@ -3,15 +3,24 @@ class Barang extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Barang_model');
+        $this->load->model('Kategori_model');
     }
 
     public function index() {
         $data['barang'] = $this->Barang_model->get_all_barang();
+        $data['kategori'] = $this->Kategori_model->get_all_kategori();
+
+        // Tambahkan nama kategori ke setiap barang
+        foreach ($data['barang'] as $barang) {
+            $barang->nama_kategori = $this->Barang_model->get_kategori_by_id($barang->id_kategori);
+        }
+
         $this->load->view('barang_view', $data);
     }
 
     public function create() {
-        $this->load->view('barang_form');
+        $data['kategori'] = $this->Kategori_model->get_all_kategori();
+        $this->load->view('barang_form', $data);
     }
 
     public function store() {
@@ -28,6 +37,7 @@ class Barang extends CI_Controller {
 
     public function edit($id) {
         $data['barang'] = $this->Barang_model->get_barang($id);
+        $data['kategori'] = $this->Kategori_model->get_all_kategori();
         $this->load->view('barang_edit_form', $data);
     }
 
@@ -35,7 +45,7 @@ class Barang extends CI_Controller {
         $data = [
             'sku' => $this->input->post('sku'),
             'nama_barang' => $this->input->post('nama_barang'),
-            'id_kategori' => $this->input->post('id_kategori'),
+            'nama_kategori' => $this->input->post('nama_kategori'),
             'harga' => $this->input->post('harga'),
             'jumlah_stok' => $this->input->post('jumlah_stok')
         ];

@@ -53,9 +53,9 @@
                     <tr>
                         <td class="px-4 py-2 border-b text-center"><?= $b->sku ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->nama_barang ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $b->kategori ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $b->nama_kategori ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->harga ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $b->stok ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $b->jumlah_stok ?></td>
                         <td class="px-4 py-2 border-b text-center">
                             <a href="<?= base_url('barang/edit/' . $b->sku) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
                         </td>
