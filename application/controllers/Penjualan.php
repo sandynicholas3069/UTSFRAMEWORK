@@ -20,30 +20,25 @@ class Penjualan extends CI_Controller {
 
     // Menyimpan data penjualan baru dan mengurangi stok barang
     public function store() {
-        $id_barang = $this->input->post('id_barang');
-        $quantity = (int) $this->input->post('quantity');
-
-        // Validasi stok barang sebelum transaksi
-        if (!$this->Barang_model->is_stock_available($id_barang, $quantity)) {
-            // Jika stok tidak cukup, kembalikan ke form dengan pesan
-            $this->session->set_flashdata('error', 'Stok barang tidak mencukupi.');
-            redirect('penjualan/create');
-        }
-
-        // Data penjualan
+        // Ambil data dari POST
         $data = [
-            'nama_pembeli' => $this->input->post('nama_pembeli'),
-            'id_barang' => $id_barang,
-            'quantity' => $quantity,
-            'tanggal_waktu' => date('Y-m-d H:i:s'),
-            'total_harga' => $this->input->post('total_harga')
+            'id_barang' => $this->input->post('id_barang'), // Mengambil id_barang dari form
+            'jumlah_barang' => $this->input->post('jumlah_barang'), // Mengambil jumlah barang dari form
+            'jumlah_harga' => $this->input->post('jumlah_harga'), // Mengambil total harga dari form
+            'tanggal_pembelian' => $this->input->post('tanggal_pembelian'), // Mengambil tanggal pembelian dari form
+            'waktu_pembelian' => $this->input->post('waktu_pembelian'), // Mengambil waktu pembelian dari form
+            'nama_pembeli' => $this->input->post('nama_pembeli') // Mengambil nama pembeli dari form
         ];
 
+        // Simpan data ke database menggunakan model
         $this->Penjualan_model->insert_penjualan($data);
 
         // Kurangi stok barang
-        $this->Barang_model->update_stock($id_barang, -$quantity);
+        $id_barang = $this->input->post('id_barang');
+        $quantity = $this->input->post('jumlah_barang'); // Mengambil jumlah barang dari form
+        $this->Barang_model->update_stock($id_barang, -$quantity); // Kurangi stok sesuai dengan jumlah yang dibeli
 
+        // Redirect ke halaman penjualan setelah berhasil
         redirect('penjualan');
     }
 
@@ -58,10 +53,10 @@ class Penjualan extends CI_Controller {
     public function update($id) {
         $penjualan = $this->Penjualan_model->get_penjualan($id);
         $id_barang = $this->input->post('id_barang');
-        $new_quantity = (int) $this->input->post('quantity');
+        $new_quantity = (int) $this->input->post('jumlah_barang'); // Mengambil jumlah barang baru
 
         // Hitung perbedaan quantity untuk update stok
-        $quantity_diff = $new_quantity - $penjualan->quantity;
+        $quantity_diff = $new_quantity - $penjualan->jumlah_barang;
 
         // Validasi stok untuk perubahan
         if (!$this->Barang_model->is_stock_available($id_barang, $quantity_diff)) {
@@ -71,10 +66,9 @@ class Penjualan extends CI_Controller {
 
         // Data penjualan yang diperbarui
         $data = [
-            'nama_pembeli' => $this->input->post('nama_pembeli'),
             'id_barang' => $id_barang,
-            'quantity' => $new_quantity,
-            'total_harga' => $this->input->post('total_harga')
+            'jumlah_barang' => $new_quantity,
+            'jumlah_harga' => $this->input->post('jumlah_harga')
         ];
 
         $this->Penjualan_model->update_penjualan($id, $data);
@@ -90,7 +84,7 @@ class Penjualan extends CI_Controller {
         $penjualan = $this->Penjualan_model->get_penjualan($id);
 
         // Kembalikan stok barang sesuai quantity yang terjual
-        $this->Barang_model->update_stock($penjualan->id_barang, $penjualan->quantity);
+        $this->Barang_model->update_stock($penjualan->id_barang, $penjualan->jumlah_barang);
 
         // Hapus data penjualan
         $this->Penjualan_model->delete_penjualan($id);

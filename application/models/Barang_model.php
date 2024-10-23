@@ -16,7 +16,11 @@ class Barang_model extends CI_Model {
     }
 
     public function get_barang($id) {
-        return $this->db->get_where('barang', ['id_barang' => $id])->row();
+        $this->db->select('barang.*, kategori_barang.nama_kategori');
+        $this->db->from('barang');
+        $this->db->join('kategori_barang', 'barang.id_kategori = kategori_barang.id_kategori');
+        $this->db->where('barang.id_barang', $id);
+        return $this->db->get()->row(); // Ambil satu baris data
     }
 
     public function update_barang($id) {
@@ -46,16 +50,24 @@ class Barang_model extends CI_Model {
     }
 
     public function search_barang($keyword) {
+        $this->db->select('barang.*, kategori_barang.nama_kategori');
+        $this->db->from('barang');
+        $this->db->join('kategori_barang', 'barang.id_kategori = kategori_barang.id_kategori');
+        $this->db->group_start(); // Start grouping the conditions
         $this->db->like('sku', $keyword);
         $this->db->or_like('nama_barang', $keyword);
-        $this->db->or_like('id_kategori', $keyword);
-        return $this->db->get('barang')->result();
+        $this->db->or_like('kategori_barang.nama_kategori', $keyword); // Include category name
+        $this->db->group_end(); // End grouping the conditions
+        return $this->db->get()->result();
     }
 
     public function filter_by_price_range($min_price, $max_price) {
-        $this->db->where('harga >=', $min_price);
-        $this->db->where('harga <=', $max_price);
-        return $this->db->get('barang')->result();
+        $this->db->select('barang.*, kategori_barang.nama_kategori'); // Pilih kolom barang dan kategori
+        $this->db->from('barang');
+        $this->db->join('kategori_barang', 'barang.id_kategori = kategori_barang.id_kategori'); // JOIN kategori
+        $this->db->where('harga >=', $min_price); // Filter harga minimal
+        $this->db->where('harga <=', $max_price); // Filter harga maksimal
+        return $this->db->get()->result(); // Ambil hasilnya
     }
 
     public function is_stock_available($sku) {

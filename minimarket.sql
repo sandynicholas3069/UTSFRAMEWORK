@@ -56,6 +56,7 @@ CREATE TABLE `kategori_barang` (
 CREATE TABLE `penjualan` (
   `id_penjualan` int(10) UNSIGNED NOT NULL,
   `id_barang` int(10) UNSIGNED NOT NULL,
+  `nama_pembeli` varchar(100) NOT NULL,
   `tanggal_pembelian` date DEFAULT NULL,
   `waktu_pembelian` time DEFAULT NULL,
   `jumlah_barang` int(10) UNSIGNED DEFAULT NULL,

@@ -39,11 +39,13 @@
             <table class="min-w-full table-auto bg-gray-800 text-orange-300 rounded-md">
                 <thead>
                     <tr>
+                        <th class="px-4 py-2 border-b text-center">ID Barang</th>
+                        <th class="px-4 py-2 border-b text-center">ID Kategori</th>
                         <th class="px-4 py-2 border-b text-center">SKU</th>
                         <th class="px-4 py-2 border-b text-center">Nama Barang</th>
                         <th class="px-4 py-2 border-b text-center">Kategori</th>
-                        <th class="px-4 py-2 border-b text-center">Harga</th>
-                        <th class="px-4 py-2 border-b text-center">Stok</th>
+                        <th class="px-4 py-2 border-b text-center">Jumlah Stok</th>
+                        <th class="px-4 py-2 border-b text-center">Harga Barang</th>
                         <th class="px-4 py-2 border-b text-center">Ubah</th>
                         <th class="px-4 py-2 border-b text-center">Hapus</th>
                     </tr>
@@ -51,11 +53,13 @@
                 <tbody>
                     <?php foreach ($barang as $b): ?>
                     <tr>
+                        <td class="px-4 py-2 border-b text-center"><?= $b->id_barang ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $b->id_kategori ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->sku ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->nama_barang ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->nama_kategori ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $b->harga ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $b->jumlah_stok ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= number_format($b->harga, 2) ?></td>
                         <td class="px-4 py-2 border-b text-center">
                             <a href="<?= base_url('barang/edit/' . $b->id_barang) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
                         </td>

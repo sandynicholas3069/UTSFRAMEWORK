@@ -15,7 +15,7 @@
         <form action="<?= base_url('barang/update/' . $barang->sku) ?>" method="post">
             <div class="mb-4">
                 <label for="sku" class="block text-sm font-medium text-orange-300">SKU</label>
-                <input type="text" id="sku" name="sku" value="<?= $barang->sku ?>" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required readonly>
+                <input type="text" id="sku" name="sku" value="<?= $barang->sku ?>" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>
             </div>
             <div class="mb-4">
                 <label for="nama_barang" class="block text-sm font-medium text-orange-300">Nama Barang</label>

@@ -26,10 +26,13 @@
                 <thead>
                     <tr>
                         <th class="px-4 py-2 border-b text-center">ID Penjualan</th>
+                        <th class="px-4 py-2 border-b text-center">ID Barang</th>
+                        <th class="px-4 py-2 border-b text-center">Nama Pembeli</th>
                         <th class="px-4 py-2 border-b text-center">Nama Barang</th>
-                        <th class="px-4 py-2 border-b text-center">Jumlah</th>
-                        <th class="px-4 py-2 border-b text-center">Total Harga</th>
-                        <th class="px-4 py-2 border-b text-center">Tanggal Penjualan</th>
+                        <th class="px-4 py-2 border-b text-center">Tanggal Pembelian</th>
+                        <th class="px-4 py-2 border-b text-center">Waktu Pembelian</th>
+                        <th class="px-4 py-2 border-b text-center">Jumlah Barang</th>
+                        <th class="px-4 py-2 border-b text-center">Jumlah Harga</th>
                         <th class="px-4 py-2 border-b text-center">Ubah</th>
                         <th class="px-4 py-2 border-b text-center">Hapus</th>
                     </tr>
@@ -38,10 +41,13 @@
                     <?php foreach ($penjualan as $p): ?>
                     <tr>
                         <td class="px-4 py-2 border-b text-center"><?= $p->id_penjualan ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $p->id_barang ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $p->nama_pembeli ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= $p->nama_barang ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $p->jumlah ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $p->total_harga ?></td>
-                        <td class="px-4 py-2 border-b text-center"><?= $p->tanggal_penjualan ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $p->tanggal_pembelian ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $p->waktu_pembelian ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= $p->jumlah_barang ?></td>
+                        <td class="px-4 py-2 border-b text-center"><?= number_format($p->jumlah_harga, 2) ?></td>
                         <td class="px-4 py-2 border-b text-center">
                             <a href="<?= base_url('penjualan/edit/' . $p->id_penjualan) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
                         </td>
