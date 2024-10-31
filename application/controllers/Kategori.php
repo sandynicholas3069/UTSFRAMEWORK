@@ -24,11 +24,11 @@ class Kategori extends CI_Controller {
         // Validasi input
         if (empty($data['nama_kategori'])) {
             $this->session->set_flashdata('error', 'Nama kategori tidak boleh kosong.');
-            redirect('kategori/create');
+            redirect('add_categories');
         }
 
         $this->Kategori_model->insert_kategori($data);
-        redirect('kategori');
+        redirect('categories');
     }
 
     // Menampilkan form untuk mengedit kategori
@@ -51,7 +51,7 @@ class Kategori extends CI_Controller {
         if (empty($data['nama_kategori'])) {
             // Jika nama kategori kosong, tampilkan error
             $this->session->set_flashdata('error', 'Nama kategori tidak boleh kosong.');
-            redirect('kategori/edit/' . $id); // Kembali ke form edit
+            redirect('edit_categories/' . $id); // Kembali ke form edit
         }
 
         // Cek apakah kategori yang dipilih untuk diubah ada
@@ -59,19 +59,19 @@ class Kategori extends CI_Controller {
         if (!$kategori) {
             // Jika kategori tidak ditemukan, tampilkan error
             $this->session->set_flashdata('error', 'Data kategori yang dipilih untuk diubah tidak ditemukan.');
-            redirect('kategori');
+            redirect('categories');
         }
 
         // Lakukan update
         $this->Kategori_model->update_kategori($id, $data);
         $this->session->set_flashdata('success', 'Kategori berhasil diperbarui.');
-        redirect('kategori');
+        redirect('categories');
     }
 
     // Menghapus kategori
     public function delete($id) {
         $this->Kategori_model->delete_kategori($id);
         $this->session->set_flashdata('success', 'Kategori berhasil dihapus.');
-        redirect('kategori');
+        redirect('categories');
     }
 }

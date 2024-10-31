@@ -12,7 +12,7 @@
 <body class="bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center min-h-screen py-20">
     <div class="bg-gray-900 shadow-lg rounded-lg p-8 w-full max-w-3xl mx-auto">
         <h2 class="text-3xl font-bold text-center text-orange-400 mb-6">Formulir Penambahan Data Barang</h2>
-        <form action="<?= base_url('barang/store') ?>" method="post">
+        <form action="<?= base_url('save_items') ?>" method="post">
             <div class="mb-4">
                 <label for="sku" class="block text-sm font-medium text-orange-300">SKU</label>
                 <input type="text" id="sku" name="sku" class="mt-1 block w-full p-2 border border-gray-700 bg-gray-700 text-orange-300 rounded-md focus:ring focus:ring-orange-500" required>

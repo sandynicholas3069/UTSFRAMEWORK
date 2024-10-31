@@ -39,7 +39,7 @@ class Penjualan extends CI_Controller {
         $this->Barang_model->update_stock($id_barang, -$quantity); // Kurangi stok sesuai dengan jumlah yang dibeli
 
         // Redirect ke halaman penjualan setelah berhasil
-        redirect('penjualan');
+        redirect('transactions');
     }
 
     // Menampilkan form edit penjualan
@@ -56,7 +56,7 @@ class Penjualan extends CI_Controller {
 
         if (!$penjualan) {
             $this->session->set_flashdata('error', 'Data penjualan tidak ditemukan.');
-            redirect('penjualan');
+            redirect('transactions');
         }
 
         // Ambil data dari form
@@ -69,7 +69,7 @@ class Penjualan extends CI_Controller {
         // Validasi stok untuk perubahan
         if ($quantity_diff != 0 && !$this->Barang_model->is_stock_available($id_barang, $quantity_diff)) {
             $this->session->set_flashdata('error', 'Stok barang tidak mencukupi untuk perubahan ini.');
-            redirect('penjualan/edit/' . $id);
+            redirect('edit_transactions/' . $id);
         }
 
         // Data penjualan yang diperbarui
@@ -94,7 +94,7 @@ class Penjualan extends CI_Controller {
         }
 
         // Redirect ke halaman penjualan
-        redirect('penjualan');
+        redirect('transactions');
     }
 
     // Menghapus penjualan dan mengembalikan stok
@@ -107,6 +107,6 @@ class Penjualan extends CI_Controller {
         // Hapus data penjualan
         $this->Penjualan_model->delete_penjualan($id);
 
-        redirect('penjualan');
+        redirect('transactions');
     }
 }

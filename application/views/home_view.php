@@ -15,10 +15,10 @@
         <h2 class="text-2xl font-bold text-orange-400 text-center mb-6">Selamat Datang Di Minimarket Barokah Pak Adi!</h2>
         <h3 class="text-xl font-bold text-orange-400 text-center mb-6">Belanja Keperluan Anda Disini Dijamin Barokah</h3>
         <div class="flex justify-center space-x-4 mb-6">
-            <a href="<?= base_url('home/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Home</a>
-            <a href="<?= base_url('barang/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Barang</a>
-            <a href="<?= base_url('kategori/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Kategori</a>
-            <a href="<?= base_url('penjualan/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Penjualan</a>
+            <a href="<?= base_url('home') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Home</a>
+            <a href="<?= base_url('items') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Barang</a>
+            <a href="<?= base_url('categories') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Kategori</a>
+            <a href="<?= base_url('transactions') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Penjualan</a>
         </div>
     </div>
 </body>

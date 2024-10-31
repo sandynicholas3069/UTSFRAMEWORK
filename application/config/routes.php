@@ -49,30 +49,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home/index';
+$route['default_controller'] = 'home';
 
-$route['barang'] = 'barang/index'; // Menampilkan daftar barang
-$route['barang/add'] = 'barang/create'; // Menampilkan form tambah barang
-$route['barang/store'] = 'barang/store'; // Menyimpan barang
-$route['barang/edit/(:any)'] = 'barang/edit/$1'; // Menampilkan form edit barang berdasarkan ID
-$route['barang/update/(:any)'] = 'barang/update/$1'; // Memperbarui barang berdasarkan ID
-$route['barang/delete/(:any)'] = 'barang/delete/$1'; // Menghapus barang berdasarkan ID
-$route['barang/search'] = 'barang/search'; // Fitur pencarian barang berdasarkan SKU/nama/kategori
-$route['barang/filter'] = 'barang/filter'; // Filter barang berdasarkan range harga
+$route['items'] = 'barang/index'; // Menampilkan daftar barang
+$route['add_items'] = 'barang/create'; // Menampilkan form tambah barang
+$route['save_items'] = 'barang/store'; // Menyimpan data barang ke dalam database
+$route['edit_items/(:any)'] = 'barang/edit/$1'; // Menampilkan form edit barang berdasarkan ID
+$route['update_items/(:any)'] = 'barang/update/$1'; // Memperbarui data barang berdasarkan ID
+$route['delete_items/(:any)'] = 'barang/delete/$1'; // Menghapus data barang berdasarkan ID
+$route['search_items'] = 'barang/search'; // Melakukan pencarian berdasarkan SKU/Nama/Kategori
+$route['filter_items'] = 'barang/filter'; // Melakukan filter berdasarkan range harga
 
-$route['kategori'] = 'kategori/index'; // Menampilkan daftar kategori barang
-$route['kategori/add'] = 'kategori/create'; // Menampilkan form tambah kategori
-$route['kategori/store'] = 'kategori/store'; // Menyimpan kategori
-$route['kategori/edit/(:any)'] = 'kategori/edit/$1'; // Menampilkan form edit kategori berdasarkan ID
-$route['kategori/update/(:any)'] = 'kategori/update/$1'; // Memperbarui kategori berdasarkan ID
-$route['kategori/delete/(:any)'] = 'kategori/delete/$1'; // Menghapus kategori berdasarkan ID
+$route['categories'] = 'kategori/index'; // Menampilkan daftar kategori
+$route['add_categories'] = 'kategori/create'; // Menampilkan form tambah kategori
+$route['save_categories'] = 'kategori/store'; // Menyimpan data kategori ke dalam database
+$route['edit_categories/(:any)'] = 'kategori/edit/$1'; // Menampilkan form edit kategori berdasarkan ID
+$route['update_categories/(:any)'] = 'kategori/update/$1'; // Memperbarui data kategori berdasarkan ID
+$route['delete_categories/(:any)'] = 'kategori/delete/$1'; // Menghapus data kategori berdasarkan ID
 
-$route['penjualan'] = 'penjualan/index'; // Menampilkan daftar penjualan
-$route['penjualan/add'] = 'penjualan/create'; // Menampilkan form tambah penjualan
-$route['penjualan/store'] = 'penjualan/store'; // Menyimpan penjualan
-$route['penjualan/edit/(:any)'] = 'penjualan/edit/$1'; // Menampilkan form edit penjualan berdasarkan ID
-$route['penjualan/update/(:any)'] = 'penjualan/update/$1'; // Memperbarui penjualan berdasarkan ID
-$route['penjualan/delete/(:any)'] = 'penjualan/delete/$1'; // Menghapus penjualan berdasarkan ID
+$route['transactions'] = 'penjualan/index'; // Menampilkan daftar penjualan
+$route['add_transactions'] = 'penjualan/create'; // Menampilkan form tambah penjualan
+$route['save_transactions'] = 'penjualan/store'; // Menyimpan data penjualan ke dalam database
+$route['edit_transactions/(:any)'] = 'penjualan/edit/$1'; // Menampilkan form edit penjualan berdasarkan ID
+$route['update_transactions/(:any)'] = 'penjualan/update/$1'; // Memperbarui data penjualan berdasarkan ID
+$route['delete_transactions/(:any)'] = 'penjualan/delete/$1'; // Menghapus data penjualan berdasarkan ID
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

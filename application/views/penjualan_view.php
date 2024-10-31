@@ -13,13 +13,13 @@
     <div class="container mx-auto p-8">
         <h1 class="text-4xl font-bold text-orange-400 text-center mb-6">MINIMARKET BAROKAH PAK ADI</h1>
         <div class="flex justify-center space-x-4 mb-6">
-            <a href="<?= base_url('home/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Home</a>
-            <a href="<?= base_url('barang/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Barang</a>
-            <a href="<?= base_url('kategori/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Kategori</a>
-            <a href="<?= base_url('penjualan/index') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Penjualan</a>
+            <a href="<?= base_url('home') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Home</a>
+            <a href="<?= base_url('items') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Barang</a>
+            <a href="<?= base_url('categories') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Kategori</a>
+            <a href="<?= base_url('transactions') ?>" class="bg-transparent border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-500 hover:text-white transition">Penjualan</a>
         </div>
         <div class="flex justify-between items-center mb-6">
-            <a href="<?= base_url('penjualan/create') ?>" class="bg-orange-500 text-white px-4 py-2 rounded-md shadow hover:bg-orange-600 transition">Tambahkan Penjualan</a>
+            <a href="<?= base_url('add_transactions') ?>" class="bg-orange-500 text-white px-4 py-2 rounded-md shadow hover:bg-orange-600 transition">Tambahkan Penjualan</a>
         </div>
         <div class="bg-gray-900 shadow-lg rounded-lg p-8 overflow-x-auto">
             <table class="min-w-full table-auto bg-gray-800 text-orange-300 rounded-md">
@@ -49,10 +49,10 @@
                         <td class="px-4 py-2 border-b text-center"><?= $p->jumlah_barang ?></td>
                         <td class="px-4 py-2 border-b text-center"><?= number_format($p->jumlah_harga, 2) ?></td>
                         <td class="px-4 py-2 border-b text-center">
-                            <a href="<?= base_url('penjualan/edit/' . $p->id_penjualan) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
+                            <a href="<?= base_url('edit_transactions/' . $p->id_penjualan) ?>" class="bg-orange-500 text-white px-2 py-1 rounded-md hover:bg-orange-600">Ubah</a>
                         </td>
                         <td class="px-4 py-2 border-b text-center">
-                            <a href="<?= base_url('penjualan/delete/' . $p->id_penjualan) ?>" onclick="return confirm('Apa anda yakin ingin menghapus Penjualan ini?');" class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Hapus</a>
+                            <a href="<?= base_url('delete_transactions/' . $p->id_penjualan) ?>" onclick="return confirm('Apa anda yakin ingin menghapus Penjualan ini?');" class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
