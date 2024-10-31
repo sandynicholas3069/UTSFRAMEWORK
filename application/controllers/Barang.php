@@ -83,7 +83,7 @@ class Barang extends CI_Controller {
 
         if ($keyword) {
             // Redirect ke index dengan query string untuk pencarian
-            redirect("items/index?keyword=" . urlencode($keyword));
+            redirect("barang/index?keyword=" . urlencode($keyword));
         } else {
             redirect('items');
         }
@@ -96,7 +96,7 @@ class Barang extends CI_Controller {
 
         if ($min_price !== null && $max_price !== null) {
             // Redirect ke index dengan query string untuk filter harga
-            redirect("items/index?min_price=$min_price&max_price=$max_price");
+            redirect("barang/index?min_price=$min_price&max_price=$max_price");
         } else {
             // Jika input tidak valid, kembali ke halaman index
             redirect('items');
