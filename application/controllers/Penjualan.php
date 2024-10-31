@@ -50,16 +50,24 @@ class Penjualan extends CI_Controller {
     }
 
     // Memperbarui data penjualan dan mengatur stok barang
-    public function update($id) {
+        public function update($id) {
+        // Ambil data penjualan berdasarkan ID
         $penjualan = $this->Penjualan_model->get_penjualan($id);
+
+        if (!$penjualan) {
+            $this->session->set_flashdata('error', 'Data penjualan tidak ditemukan.');
+            redirect('penjualan');
+        }
+
+        // Ambil data dari form
         $id_barang = $this->input->post('id_barang');
-        $new_quantity = (int) $this->input->post('jumlah_barang'); // Mengambil jumlah barang baru
+        $new_quantity = (int) $this->input->post('jumlah_barang');
 
         // Hitung perbedaan quantity untuk update stok
         $quantity_diff = $new_quantity - $penjualan->jumlah_barang;
 
         // Validasi stok untuk perubahan
-        if (!$this->Barang_model->is_stock_available($id_barang, $quantity_diff)) {
+        if ($quantity_diff != 0 && !$this->Barang_model->is_stock_available($id_barang, $quantity_diff)) {
             $this->session->set_flashdata('error', 'Stok barang tidak mencukupi untuk perubahan ini.');
             redirect('penjualan/edit/' . $id);
         }
@@ -68,14 +76,24 @@ class Penjualan extends CI_Controller {
         $data = [
             'id_barang' => $id_barang,
             'jumlah_barang' => $new_quantity,
-            'jumlah_harga' => $this->input->post('jumlah_harga')
+            'jumlah_harga' => $this->input->post('jumlah_harga'),
+            'tanggal_pembelian' => $this->input->post('tanggal_pembelian'),
+            'waktu_pembelian' => $this->input->post('waktu_pembelian'),
+            'nama_pembeli' => $this->input->post('nama_pembeli')
         ];
 
-        $this->Penjualan_model->update_penjualan($id, $data);
+        // Update data penjualan
+        if ($this->Penjualan_model->update_penjualan($id, $data)) {
+            // Perbarui stok barang hanya jika ada perubahan jumlah
+            if ($quantity_diff != 0) {
+                $this->Barang_model->update_stock($id_barang, -$quantity_diff); // Mengurangi stok sesuai perubahan
+            }
+            $this->session->set_flashdata('success', 'Data penjualan berhasil diperbarui.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal memperbarui data penjualan.');
+        }
 
-        // Perbarui stok barang
-        $this->Barang_model->update_stock($id_barang, -$quantity_diff);
-
+        // Redirect ke halaman penjualan
         redirect('penjualan');
     }
 

@@ -23,25 +23,9 @@ class Barang_model extends CI_Model {
         return $this->db->get()->row(); // Ambil satu baris data
     }
 
-    public function update_barang($id) {
-        $data = [
-            'sku' => $this->input->post('sku'),
-            'nama_barang' => $this->input->post('nama_barang'),
-            'id_kategori' => $this->input->post('id_kategori'), // Pastikan ini valid
-            'harga' => $this->input->post('harga'),
-            'jumlah_stok' => $this->input->post('jumlah_stok')
-        ];
-
-        // Pastikan id_kategori valid sebelum update
-        if ($this->Kategori_model->get_kategori($data['id_kategori'])) {
-            $this->Barang_model->update_barang($id, $data);
-            redirect('barang');
-        } else {
-            // Tangani error: id_kategori tidak valid
-            // Misalnya: set flashdata dan redirect
-            $this->session->set_flashdata('error', 'ID Kategori tidak valid.');
-            redirect('barang/edit/' . $id);
-        }
+    public function update_barang($id, $data) {
+        $this->db->where('id_barang', $id);
+        return $this->db->update('barang', $data);
     }
 
     public function delete_barang($id) {

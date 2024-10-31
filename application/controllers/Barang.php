@@ -59,6 +59,18 @@ class Barang extends CI_Controller {
         ];
         $this->Barang_model->update_barang($id, $data);
         redirect('barang');
+
+        if ($this->Kategori_model->get_kategori($data['id_kategori'])) {
+            if ($this->Barang_model->update_barang($id, $data)) {
+                redirect('barang');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal memperbarui barang.');
+                redirect('barang/edit/' . $id);
+            }
+        } else {
+            $this->session->set_flashdata('error', 'ID Kategori tidak valid.');
+            redirect('barang/edit/' . $id);
+        }
     }
 
     public function delete($id) {
